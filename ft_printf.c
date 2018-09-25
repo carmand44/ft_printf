@@ -32,10 +32,10 @@ int     ft_printf(const char *str, ...)
                 ft_putchar(va_arg(ap, int));
             else if (*str == 's' || *str == 'S')
                 ft_putstr(va_arg(ap, char *));
-            //else if (*str == 'x')
-            //    ft_puthexa(va_arg(ap, unsigned int), 0);
-            //else if (*str == 'X')
-            //    ft_puthexa(va_arg(ap, unsigned int), 1);
+            else if (*str == 'x')
+                ft_puthexa(va_arg(ap, unsigned int), 0);
+            else if (*str == 'X')
+                ft_puthexa(va_arg(ap, unsigned int), 1);
         }
         else
         {

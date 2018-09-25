@@ -18,8 +18,11 @@ int main(int c, char **v)
 {
 	if (c == 2)
 	{
-		printf("%d\n", atoi(v[1]));
-		ft_printf("%d\n", atoi(v[1]));
+		printf("%X\n", atoi(v[1]));
+		ft_printf("%X\n", atoi(v[1]));
+		printf("%x\n", atoi(v[1]));
+		ft_printf("%x\n", atoi(v[1]));
+
 	}
 	return (0);
 }
