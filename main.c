@@ -14,15 +14,9 @@
 #include <stdlib.h>
 #include "ft_printf.h"
 
-int main(int c, char **v)
+int main(void)
 {
-	if (c == 2)
-	{
-		printf("%X\n", atoi(v[1]));
-		ft_printf("%X\n", atoi(v[1]));
-		printf("%x\n", atoi(v[1]));
-		ft_printf("%x\n", atoi(v[1]));
-
-	}
+		printf("%o\n", 45);
+		ft_printf("%o\n", 45);
 	return (0);
 }

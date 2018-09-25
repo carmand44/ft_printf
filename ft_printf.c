@@ -33,9 +33,16 @@ int     ft_printf(const char *str, ...)
             else if (*str == 's' || *str == 'S')
                 ft_putstr(va_arg(ap, char *));
             else if (*str == 'x')
-                ft_puthexa(va_arg(ap, unsigned int), 0);
+                ft_puthexa(va_arg(ap, unsigned long long), 0);
             else if (*str == 'X')
-                ft_puthexa(va_arg(ap, unsigned int), 1);
+                ft_puthexa(va_arg(ap, unsigned long long), 1);
+            else if (*str == 'p')
+            {
+                write(1, "0x", 2);
+                ft_puthexa(va_arg(ap, unsigned long long), 0);
+            }
+            else if (*str == 'o')
+                ft_putocta(va_arg(ap, unsigned long long));
         }
         else
         {

@@ -16,7 +16,8 @@
 # include "libft.h"
 # include <stdarg.h>
 
-void    ft_puthexa(unsigned int nb, char b);
+void	ft_putocta(long long n);
+void    ft_puthexa(unsigned long long nb, char b);
 int     ft_printf(const char *str, ...);
 
 # endif

@@ -14,7 +14,7 @@ NAME =	ft_printf
 
 SRC =	main.c \
 		ft_printf.c \
-		ft_puthexa.c
+		ft_print_nbr.c
 
 TMP =	$(SRC:.c=.o)
 
