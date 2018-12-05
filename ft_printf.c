@@ -6,19 +6,48 @@
 /*   By: achavy <achavy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:06:45 by achavy            #+#    #+#             */
-/*   Updated: 2018/11/30 22:09:41 by achavy           ###   ########.fr       */
+/*   Updated: 2018/12/05 22:29:15 by achavy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int     ft_printf(const char *str, ...)
+static int		init_p(t_printf *p, int	*size)
 {
-    va_list ap;
-    int     size;
+	*size = 0;
+	p->flg_nbl = NULL;
+	p->flg = NULL;
+	p->cnv - NULL;
+	p->cnv_nbl = NULL;
+	if (!(p->flg_nbl = ft_strdup("#0+- ")
+	|| !(p->flg = ft_strnew(127)))
+		return (0);
+	return (1);
+}
 
+static int		ft_convertion(char *str, t_printf *p)
+{
+	int	i;
+
+	i = 0;
+	while (ft_strchr(p->flg_nbl, str[i]))
+	{
+		p->flg[str[i]] = 1;
+		i++;
+	}
+	if (str[i] <= '9' && str[i] >= '1')
+	return (1);
+}
+
+int     		ft_printf(const char *str, ...)
+{
+	t_printf	p;
+    va_list 	ap;
+    int     	size;
+
+	if (!(init_p(&p, &size)))
+		return (-1);
     va_start(ap, str);
-    size = 0;
     while (*str)
     {
         if (*str == '%')
@@ -26,23 +55,8 @@ int     ft_printf(const char *str, ...)
             str++;
             if (*str == '%')
                 ft_putchar('%');
-            else if (*str == 'd' || *str == 'i')
-                ft_putnbr(va_arg(ap, int));
-            else if (*str == 'c' || *str == 'C')
-                ft_putchar(va_arg(ap, int));
-            else if (*str == 's' || *str == 'S')
-                ft_putstr(va_arg(ap, char *));
-            else if (*str == 'x')
-                ft_puthexa(va_arg(ap, unsigned long long), 0);
-            else if (*str == 'X')
-                ft_puthexa(va_arg(ap, unsigned long long), 1);
-            else if (*str == 'p')
-            {
-                write(1, "0x", 2);
-                ft_puthexa(va_arg(ap, unsigned long long), 0);
-            }
-            else if (*str == 'o')
-                ft_putocta(va_arg(ap, unsigned long long));
+            else if (!(ft_convertion(str, &p)))
+				return (0);
         }
         else
         {
@@ -53,4 +67,6 @@ int     ft_printf(const char *str, ...)
     }
     va_end(ap);
     return (size);
-    }
+}
+
+//ft_putocta(va_arg(ap, unsigned long long));
