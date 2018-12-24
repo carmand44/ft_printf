@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <stdio.h>
 
-long ft_power(int nb, int power)
+long double ft_power(long double nb, int power)
 {
 	if (power == 0)
 		return (1);
@@ -21,7 +21,7 @@ long ft_power(int nb, int power)
 }
 
 void	ft_putfloat(long double n, int y) // y nb de chiffre apres la virgule a 
-{									// afficher!!comportemnt ndef if not correct
+{								// afficher!!comportemnt ndef if not correct
 	long double nb;	
 
 	nb = n;
@@ -32,8 +32,11 @@ void	ft_putfloat(long double n, int y) // y nb de chiffre apres la virgule a
 	}
 	ft_putnbr((int)nb);
 	ft_putchar('.');
-	nb = nb - (int)nb;
-	ft_putnbr(nb * ft_power(10, y));
+	nb = (nb - (int)nb) * ft_power(10, y);
+	if (((int)(nb * 10) % 10) > 4)
+		ft_putnbr(nb + 1);
+	else
+		ft_putnbr(nb);
 }
 
 int main(void)
